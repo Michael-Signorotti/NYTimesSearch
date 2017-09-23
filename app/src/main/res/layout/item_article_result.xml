@@ -7,13 +7,15 @@
         android:id="@+id/ivThumbnail"
         android:layout_width="@dimen/thumbNailSize"
         android:layout_height="@dimen/thumbNailSize"
-
+        android:scaleType="center"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/tvHeadLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:text="@string/title" />
 
 </LinearLayout>

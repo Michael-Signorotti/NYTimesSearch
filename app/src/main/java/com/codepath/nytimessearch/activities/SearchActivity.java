@@ -1,9 +1,11 @@
 package com.codepath.nytimessearch.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -47,7 +49,27 @@ public class SearchActivity extends AppCompatActivity {
         articles = new ArrayList<Article>();
         adapter = new ArticleArrayAdapter(this, articles);
         gvResults.setAdapter(adapter);
-    }
+
+        gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+
+                //create an itent to display the article
+                Intent i = new Intent(getApplicationContext(), ArticleActivity.class);
+
+                //get the article to display
+                Article article = articles.get(position);
+
+                //pass the article to the intent
+                i.putExtra("url", article.getWebUrl());
+
+                //launch the activity
+                startActivity(i);
+
+            }
+                                         }
+            );
+    };
 
     public void onArticleSearch(View view) {
         String query = etQuery.getText().toString();

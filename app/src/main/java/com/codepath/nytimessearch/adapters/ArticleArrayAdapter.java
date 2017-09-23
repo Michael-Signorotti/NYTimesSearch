@@ -53,11 +53,7 @@ public class ArticleArrayAdapter extends ArrayAdapter<Article> {
 
 
         if (!TextUtils.isEmpty(thumbnail)) {
-            Log.d("DEBUG", thumbnail);
-            System.out.println(thumbnail);
-
             Picasso.with(getContext()).load(thumbnail).into(ivImage);
-
         }
 
         return convertView;
