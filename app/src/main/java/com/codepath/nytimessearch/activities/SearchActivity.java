@@ -61,7 +61,7 @@ public class SearchActivity extends AppCompatActivity {
                 Article article = articles.get(position);
 
                 //pass the article to the intent
-                i.putExtra("url", article.getWebUrl());
+                i.putExtra("article", article);
 
                 //launch the activity
                 startActivity(i);
