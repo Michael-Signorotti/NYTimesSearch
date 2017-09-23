@@ -4,20 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.codepath.nytimessearch.activities.SearchActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="?attr/colorPrimary">
+    </android.support.v7.widget.Toolbar>
 
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
         android:text="@string/search"
         android:onClick="onArticleSearch"
-        android:layout_marginTop="19dp" />
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/etSearch"
@@ -33,14 +43,14 @@
 
     <GridView
         android:id="@+id/gvResults"
-        android:numColumns="4"
+        android:numColumns="3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/btnSearch"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/btnSearch"
-        android:layout_toEndOf="@+id/etSearch"
-        android:layout_toRightOf="@+id/etSearch" />
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>
