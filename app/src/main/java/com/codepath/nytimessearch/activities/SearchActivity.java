@@ -20,6 +20,8 @@ import com.codepath.nytimessearch.adapters.ArticleArrayAdapter;
 import com.codepath.nytimessearch.fragments.FilterSearchDialogFragment;
 import com.codepath.nytimessearch.models.Article;
 import com.codepath.nytimessearch.models.SearchFilter;
+import com.codepath.nytimessearch.utils.EndlessScrollListener;
+import com.codepath.nytimessearch.utils.NYTimesAPIUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -70,37 +72,65 @@ public class SearchActivity extends AppCompatActivity implements FilterSearchDia
         gvResults.setAdapter(adapter);
 
         gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                                             @Override
+                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //create an itent to display the article
-                Intent i = new Intent(getApplicationContext(), ArticleActivity.class);
+                                                 //create an itent to display the article
+                                                 Intent i = new Intent(getApplicationContext(), ArticleActivity.class);
 
-                //get the article to display
-                Article article = articles.get(position);
+                                                 //get the article to display
+                                                 Article article = articles.get(position);
 
-                //pass the article to the intent
-                i.putExtra("article", article);
+                                                 //pass the article to the intent
+                                                 i.putExtra("article", article);
 
-                //launch the activity
-                startActivity(i);
+                                                 //launch the activity
+                                                 startActivity(i);
 
-            }
+                                             }
                                          }
-            );
-    };
+        );
+
+        gvResults.setOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public boolean onLoadMore(int page, int totalItemsCount) {
+                loadNextPage(page);
+                return true; // ONLY if more data is actually being loaded; false otherwise.
+            }
+        });
+    }
+
 
     public void onArticleSearch(View view) {
+
+        if (articles.size() > 0) {
+            articles.clear();
+            adapter.notifyDataSetChanged();
+        }
+
         String query = etQuery.getText().toString();
 
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-        RequestParams params = new RequestParams();
-        params.put("api-key", getString(R.string.nytimes_api_key));
-        params.put("page", 0);
-        params.put("q", query);
 
+        RequestParams params = NYTimesAPIUtils.formatParams(searchFilter, query, getString(R.string.nytimes_api_key), 0);
 
+        makeAPICall(client, url, params);
+    }
+
+    public void loadNextPage(int pageNum) {
+
+        String query = etQuery.getText().toString();
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        String url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+
+        RequestParams params = NYTimesAPIUtils.formatParams(searchFilter, query, getString(R.string.nytimes_api_key), pageNum);
+
+        makeAPICall(client, url, params);
+    }
+
+    public void makeAPICall(AsyncHttpClient client, String url, RequestParams params) {
         client.get(url, params, new JsonHttpResponseHandler() {
 
             @Override
@@ -121,7 +151,6 @@ public class SearchActivity extends AppCompatActivity implements FilterSearchDia
                 Log.e("ERROR", errorResponse.toString());
             }
         });
-
     }
 
     public void showFilterSearchDialog(MenuItem item) {

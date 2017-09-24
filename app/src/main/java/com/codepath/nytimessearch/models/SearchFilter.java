@@ -7,7 +7,7 @@ import java.util.Calendar;
  * Created by michaelsignorotti on 9/24/17.
  */
 
-public class SearchFilter implements Serializable{
+public class SearchFilter implements Serializable {
 
     private Calendar beginDate;
     private String sortOrder;
@@ -41,6 +41,18 @@ public class SearchFilter implements Serializable{
 
     public String getBeginDateString() {
         return getBeginDateMonth() + "/" + getBeginDateDay() + "/" + getBeginDateYear();
+    }
+
+    public String getBeginDateParam() {
+        String month = Integer.toString(getBeginDateMonth());
+        if (month.length() == 1) {
+            month = "0" + month;
+        }
+        String day = Integer.toString(getBeginDateDay());
+        if (day.length() == 1) {
+            day = "0" + day;
+        }
+        return getBeginDateYear() + month + day;
     }
 
     public String getSortOrder() {

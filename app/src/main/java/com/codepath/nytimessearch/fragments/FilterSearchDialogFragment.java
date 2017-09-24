@@ -110,7 +110,7 @@ public class FilterSearchDialogFragment extends DialogFragment  {
     // attach to an onclick handler to show the date picker
     public void showDatePickerDialog(View v) {
         DatePickerFragment newFragment = new DatePickerFragment();
-        newFragment.setTargetFragment(FilterSearchDialogFragment.this, 0);
+        newFragment.setTargetFragment(FilterSearchDialogFragment.this, 300);
         newFragment.show(getFragmentManager(), "datePicker");
     }
 

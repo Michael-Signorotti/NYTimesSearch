@@ -61,4 +61,13 @@ public class Article implements Serializable{
     public String getThumbnail() {
         return thumbnail;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "webUrl='" + webUrl + '\'' +
+                ", headline='" + headline + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
+                '}';
+    }
 }

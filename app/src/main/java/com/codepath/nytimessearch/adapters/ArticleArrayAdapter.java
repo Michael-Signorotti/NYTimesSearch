@@ -36,7 +36,7 @@ public class ArticleArrayAdapter extends ArrayAdapter<Article> {
 
         // Get the article for this position
         Article article = getItem(position);
-
+        log.d("DEBUG", article.toString());
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
