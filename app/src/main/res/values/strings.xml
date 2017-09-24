@@ -3,4 +3,17 @@
     <string name="searchQuery">Enter Search Query</string>
     <string name="search">Search</string>
     <string name="title">Title</string>
+    <string name="beginDate">Begin Date</string>
+    <string name="selectDate">Select Date</string>
+    <string name="sortOrder">Sort Order</string>
+    <string name="newsDeskValues">News Desk Values</string>
+    <string name="save">Save</string>
+    <string name="art">Art</string>
+    <string name="fashionAndStyle">Fashion and Style</string>
+    <string name="sports">Sports</string>
+
+    <string-array name="sort_order">
+        <item>Oldest</item>
+        <item>Newest</item>
+    </string-array>
 </resources>

@@ -1,0 +1,86 @@
+<!-- fragment_edit_name.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/filterSearch"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_gravity="center" android:orientation="vertical"  >
+
+
+    <TextView
+        android:id="@+id/tvBeginDate"
+        android:layout_marginTop="@dimen/fragmentMargin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/beginDate"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center_horizontal"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etBeginDate"
+        android:layout_marginRight="@dimen/fragmentMargin"
+        android:layout_marginLeft="@dimen/fragmentMargin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/selectDate"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/tvSortOrder"
+        android:layout_marginTop="@dimen/fragmentMargin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sortOrder"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center_horizontal"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/sSortOrder"
+        android:layout_marginLeft="@dimen/fragmentMargin"
+        android:layout_marginRight="@dimen/fragmentMargin"
+        android:layout_width="match_parent"
+        android:entries="@array/sort_order"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvNewsDesk"
+        android:layout_marginTop="@dimen/fragmentMargin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/newsDeskValues"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center_horizontal"
+        android:textSize="18sp" />
+
+    <CheckBox
+        android:id="@+id/cbArt"
+        android:layout_marginLeft="@dimen/fragmentMargin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/art" />
+
+    <CheckBox
+        android:id="@+id/cbFashionStyle"
+        android:layout_marginLeft="@dimen/fragmentMargin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fashionAndStyle" />
+
+    <CheckBox
+        android:id="@+id/cbSports"
+        android:layout_marginLeft="@dimen/fragmentMargin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sports" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_marginTop="@dimen/fragmentMargin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/save"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

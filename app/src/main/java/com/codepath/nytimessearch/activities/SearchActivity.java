@@ -1,11 +1,13 @@
 package com.codepath.nytimessearch.activities;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -14,6 +16,7 @@ import android.widget.GridView;
 
 import com.codepath.nytimessearch.R;
 import com.codepath.nytimessearch.adapters.ArticleArrayAdapter;
+import com.codepath.nytimessearch.fragments.FilterSearchDialogFragment;
 import com.codepath.nytimessearch.models.Article;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -115,5 +118,11 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void showFilterSearchDialog(MenuItem item) {
+        FragmentManager fm = getSupportFragmentManager();
+        FilterSearchDialogFragment editNameDialogFragment = FilterSearchDialogFragment.newInstance("Filter Article Search");
+        editNameDialogFragment.show(fm, "fragment_filter_search");
     }
 }

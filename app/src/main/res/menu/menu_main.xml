@@ -6,6 +6,7 @@
         android:id="@+id/miFilter"
         android:icon="@drawable/ic_filter"
         app:showAsAction="ifRoom"
+        android:onClick="showFilterSearchDialog"
         android:title="Compose">
     </item>
 
