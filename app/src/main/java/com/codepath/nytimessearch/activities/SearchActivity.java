@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import com.codepath.nytimessearch.interfaces.FilterSearchDialogListener;
 import com.codepath.nytimessearch.R;
 import com.codepath.nytimessearch.adapters.ArticleArrayAdapter;
 import com.codepath.nytimessearch.fragments.FilterSearchDialogFragment;
 import com.codepath.nytimessearch.models.Article;
+import com.codepath.nytimessearch.models.SearchFilter;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -26,12 +28,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import cz.msebera.android.httpclient.Header;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements FilterSearchDialogListener {
 
     EditText etQuery;
     GridView gvResults;
@@ -39,6 +41,8 @@ public class SearchActivity extends AppCompatActivity {
 
     ArrayList<Article> articles;
     ArticleArrayAdapter adapter;
+
+    SearchFilter searchFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +126,18 @@ public class SearchActivity extends AppCompatActivity {
 
     public void showFilterSearchDialog(MenuItem item) {
         FragmentManager fm = getSupportFragmentManager();
-        FilterSearchDialogFragment editNameDialogFragment = FilterSearchDialogFragment.newInstance("Filter Article Search");
-        editNameDialogFragment.show(fm, "fragment_filter_search");
+        FilterSearchDialogFragment filterSearchDialogFragment = FilterSearchDialogFragment.newInstance("Filter Article Search");
+
+        //set the current search preferences
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("searchFilter", searchFilter);
+        filterSearchDialogFragment.setArguments(bundle);
+        filterSearchDialogFragment.show(fm, "fragment_filter_search");
+    }
+
+
+    @Override
+    public void onFinishFilterSearchDialog(SearchFilter filter) {
+        this.searchFilter = filter;
     }
 }
