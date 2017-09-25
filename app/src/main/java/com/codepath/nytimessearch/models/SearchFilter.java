@@ -32,7 +32,7 @@ public class SearchFilter implements Serializable {
     }
 
     public int getBeginDateMonth() {
-        return beginDate.get(Calendar.MONTH);
+        return beginDate.get(Calendar.MONTH) + 1;
     }
 
     public int getBeginDateYear() {

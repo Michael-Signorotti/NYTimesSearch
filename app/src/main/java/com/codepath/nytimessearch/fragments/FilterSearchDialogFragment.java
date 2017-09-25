@@ -117,7 +117,7 @@ public class FilterSearchDialogFragment extends DialogFragment  {
     public void setBeginDate(Calendar c) {
         this.calendar = c;
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
+        int month = c.get(Calendar.MONTH) + 1;
         int day = c.get(Calendar.DAY_OF_MONTH);
         String dateString = month + "/" + day + "/" + year;
         etBeginDate.setText(dateString);
